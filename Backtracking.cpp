@@ -35,3 +35,34 @@ int main()
 	solve(str,asf,0,0);
 	return 0;
 }
+
+
+
+
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+void dfs(int i,int n){
+    if(i>n){
+        return;
+    }
+    cout<<i<<endl;
+    for(int j=0;j<n;j++){
+        dfs(10*i+j,n);
+    }
+}
+
+int main()
+{
+	int n;cin>>n;
+    for(int i=1;i<=9;i++){
+        dfs(i,n);
+    }
+	return 0;
+}
+
+
