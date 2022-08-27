@@ -1,0 +1,269 @@
+// using array
+
+// { Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+class MyQueue {
+private:
+    int arr[100005];
+    int front;
+    int rear;
+
+public :
+    MyQueue(){front=0;rear=0;}
+    void push(int);
+    int pop();
+};
+
+
+void MyQueue :: push(int x)
+{
+    arr[rear]=x;
+    rear++;
+        
+}
+
+//Function to pop an element from queue and return that element.
+int MyQueue :: pop()
+{
+      if(front==rear){
+          front=0;rear=0;
+          return -1;
+      }       
+      int x=arr[front];
+      front++;
+      return x;
+}
+
+int main()
+{
+    int T;
+    cin>>T;
+    while(T--)
+    {
+        MyQueue *sq = new MyQueue();
+
+        int Q;
+        cin>>Q;
+        while(Q--){
+        int QueryType=0;
+        cin>>QueryType;
+        if(QueryType==1)
+        {
+            int a;
+            cin>>a;
+            sq->push(a);
+        }else if(QueryType==2){
+            cout<<sq->pop()<<" ";
+
+        }
+        }
+        cout<<endl;
+    }
+    }
+
+
+
+// implement stack using array
+
+#include<bits/stdc++.h>
+using namespace std;
+
+class MyStack
+{
+private:
+    int arr[1000];
+    int top;
+public:
+    MyStack(){top=0;}
+    int pop();
+    void push(int);
+};
+// push 
+void MyStack :: push(int x)
+{
+    arr[++top]=x;
+}
+
+//Function to remove an item from top of the stack.
+int MyStack :: pop()
+{
+    if(top==-1){
+        return -1;
+    }     
+    int x=arr[top--];
+    return x;
+}
+
+int main()
+{
+
+    int T;
+    cin>>T;
+    while(T--)
+    {
+        MyStack *sq = new MyStack();
+
+        int Q;
+        cin>>Q;
+        while(Q--){
+        int QueryType=0;
+        cin>>QueryType;
+        if(QueryType==1)
+        {
+            int a;
+            cin>>a;
+            sq->push(a);
+        }else if(QueryType==2){
+            cout<<sq->pop()<<" ";
+
+        }
+        }
+        cout<<endl;
+    }
+}
+
+
+
+// Implement Stack using Linked List
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+struct StackNode {
+    int data;
+    StackNode *next;
+    StackNode(int a) {
+        data = a;
+        next = NULL;
+    }
+};
+
+class MyStack {
+  private:
+    StackNode *top;
+
+  public:
+    void push(int);
+    int pop();
+    MyStack() { top = NULL; }
+};
+
+void MyStack ::push(int x) {
+    StackNode* node=(StackNode*)malloc(sizeof(StackNode));
+    node->data=x;
+    node->next=top;
+    top=node;
+}
+
+int MyStack ::pop() {
+   if(top==NULL) return -1;
+   int res=top->data;
+   StackNode* temp=top;
+   top=top->next;
+   delete(temp);
+   return res;
+}
+
+int main() {
+    int T;
+    cin >> T;
+    while (T--) {
+        MyStack *sq = new MyStack();
+
+        int Q;
+        cin >> Q;
+        while (Q--) {
+            int QueryType = 0;
+            cin >> QueryType;
+            if (QueryType == 1) {
+                int a;
+                cin >> a;
+                sq->push(a);
+            } else if (QueryType == 2) {
+                cout << sq->pop() << " ";
+            }
+        }
+        cout << endl;
+    }
+}
+
+
+// implement stack using 1 Queue
+
+#include <bits/stdc++.h>
+using namespace std;
+
+// Stack Class that acts as a queue
+class Stack {
+
+	queue<int> q;
+
+public:
+	void push(int data);
+	void pop();
+	int top();
+	bool empty();
+};
+
+// Push operation
+void Stack::push(int data)
+{
+	// Get previous size of queue
+	int s = q.size();
+
+	// Push the current element
+	q.push(data);
+
+	// Pop all the previous elements and put them after
+	// current element
+
+	for (int i = 0; i < s; i++) {
+		// Add the front element again
+		q.push(q.front());
+
+		// Delete front element
+		q.pop();
+	}
+}
+
+// Removes the top element
+void Stack::pop()
+{
+	if (q.empty())
+		cout << "No elements\n";
+	else
+		q.pop();
+}
+
+// Returns top of stack
+int Stack::top() { return (q.empty()) ? -1 : q.front(); }
+
+// Returns true if Stack is empty else false
+bool Stack::empty() { return (q.empty()); }
+
+int main()
+{
+	Stack st;
+	st.push(40);
+	st.push(50);
+	st.push(70);
+	cout << st.top() << "\n";
+	st.pop();
+	cout << st.top() << "\n";
+	st.pop();
+	cout << st.top() << "\n";
+	st.push(80);
+	st.push(90);
+	st.push(100);
+	cout << st.top() << "\n";
+	st.pop();
+	cout << st.top() << "\n";
+	st.pop();
+	cout << st.top() << "\n";
+	return 0;
+}
+
+
